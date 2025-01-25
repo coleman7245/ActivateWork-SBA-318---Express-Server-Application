@@ -10,6 +10,8 @@ const app = express();
 
 let port = 8080;
 
+app.use(companies);
+
 app.get("/", (req, res) => {
     res.send("<h1>Here I am!</h1>");
 });
