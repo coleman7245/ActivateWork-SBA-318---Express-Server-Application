@@ -13,6 +13,8 @@ let port = 8080;
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json({ extended: true }));
 
+app.set("view", "ejs");
+
 app.use("/api/companies", companies);
 app.use("/api/titles", titles);
 app.use("/api/genres", genres);
@@ -64,7 +66,16 @@ app.get("/api", (req, res) => {
     ];
 
     res.send(links);
-})
+});
+
+app.use((req, res, next) => {
+    next(error(404, "Resource Not Found"));
+});
+
+app.use((err, req, res, next) => {
+    res.status(err.status || 500);
+    res.json({ error: err.message });
+});
 
 app.listen(port, () => {
     console.log(`Server listening on port ${port}`);
