@@ -7,8 +7,8 @@ function getAPIRequests(req, res) {
         }
     ];
 
-    //res.json({links});
     res.render("index");
+    //res.json({links});
 }
 
 function getDataRequests(req, res) {

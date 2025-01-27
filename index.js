@@ -13,7 +13,7 @@ let port = 8080;
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json({ extended: true }));
 
-app.use(express.static(__dirname + "/public"));
+app.use(express.static("public"));
 app.set("views", "./views");
 app.set("view engine", "ejs");
 
