@@ -14,10 +14,10 @@ const titles = [
         "description" : ""
     },
     {
-        "id" : "Castle",
-        "name" : "Breath of Fire 2",
-        "genreId" : "rpg",
-        "companyId" : "cap",
+        "id" : "CasSOTN",
+        "name" : "Castlevania: Symphony of the Night",
+        "genreId" : "Adventure",
+        "companyId" : "kon",
         "description" : ""
     }
 ];
