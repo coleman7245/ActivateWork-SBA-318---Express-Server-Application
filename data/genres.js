@@ -17,4 +17,4 @@ const genres = [
     }
 ];
 
-module.export = genres;
+module.exports = genres;

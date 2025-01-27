@@ -1,32 +1,37 @@
 const express = require("express");
 const router = express.Router();
 
-const companies = require("../data.companies");
+const companies = require("../data/companies");
 const error = require("../error/error");
 
-router
-    .route('/')
-        .get((req, res) => {
+router.route('/')
+    .get((req, res) => {
         const links = [
             {
-                href : `/${req.params.id}`,
-                rel : "",
-                type : "PATCH"
+              href: "companies/:id",
+              rel: ":id",
+              type: "GET",
             },
-            {
-                href : `/${req.params.id}`,
-                rel : "",
-                type : "DELETE"
-            }
-        ];
+          ];
+      
+        res.json({companies, links});
+    })
+    .post((req, res, next) => {
 
-        if (titles)
-            res.json({titles, companies});
-        else
-            next();
-        })
-        .post((req, res, next) => {
+    });
 
-        });
+router.route('/:id')
+    .get((req, res, next) => {
 
-        module.exports = router;
+    })
+    .post((req, res, next) => {
+
+    })
+    .patch((req, res, next) => {
+
+    })
+    .delete((req, res, next) => {
+
+    });
+
+module.exports = router;
