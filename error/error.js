@@ -1,6 +1,8 @@
-function error(code, message) {
+function error(status, message) {
     let error = new Error(message);
-    error.status = code;
+    error.status = status;
 
     return error;
 }
+
+module.exports = error;

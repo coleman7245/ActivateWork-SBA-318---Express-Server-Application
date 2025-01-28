@@ -3,7 +3,7 @@ const error = require("../error/error");
 
 function deleteGenre(req, res, next) {
     const genre = genres.find((g, i) => {
-        if (g.id === req.body.id) {
+        if (g.id === req.params.id) {
             genres.splice(i, 1);
             return true;
         }
@@ -38,21 +38,27 @@ function getGenre(req, res, next) {
 }
 
 function getGenres(req, res) {
-    const links = [
-        {
-          href: "genres/:id",
-          rel: ":id",
-          type: "GET",
-        },
-    ];
-  
-    res.json({genres, links});
+    if (req.query.limit) {
+        const selected_genres = genres.slice(0, req.query.limit);
+        res.json({selected_genres});
+    }
+    else {
+        const links = [
+            {
+            href: "genres/:id",
+            rel: ":id",
+            type: "GET",
+            },
+        ];
+    
+        res.json({genres, links});
+    }
 }
 
 function patchGenre(req, res, next) {
-    const genre = genre.find((g, i) => {
+    const genre = genres.find((g, i) => {
         if (g.id === req.params.id) {
-            for (const key in g.body) {
+            for (const key in req.body) {
                 genres[i][key] = req.body[key];
             }
 
@@ -73,7 +79,7 @@ function postGenre(req, res, next) {
             name : req.body.name
         }
 
-        genre.push(genre);
+        genres.push(genre);
         res.json({genre});
     }
     else

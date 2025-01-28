@@ -3,7 +3,7 @@ const error = require("../error/error");
 
 function deleteTitle(req, res, next) {
     const title = titles.find((t, i) => {
-        if (t.id === req.body.id) {
+        if (t.id === req.params.id) {
             titles.splice(i, 1);
             return true;
         }
@@ -38,21 +38,27 @@ function getTitle(req, res, next) {
 }
 
 function getTitles(req, res) {
-    const links = [
-        {
-          href: "titles/:id",
-          rel: ":id",
-          type: "GET",
-        },
-      ];
-  
-    res.json({titles, links });
+    if (req.query.limit) {
+        const selected_titles = titles.slice(0, req.query.limit);
+        res.json({selected_titles});
+    }
+    else {
+        const links = [
+            {
+            href: "titles/:id",
+            rel: ":id",
+            type: "GET",
+            },
+        ];
+    
+        res.json({titles, links });
+    }
 }
 
 function patchTitle(req, res, next) {
     const title = titles.find((t, i) => {
         if (t.id === req.params.id) {
-            for (const key in t.body) {
+            for (const key in req.body) {
                 titles[i][key] = req.body[key];
             }
 

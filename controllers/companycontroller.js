@@ -3,7 +3,7 @@ const error = require("../error/error");
 
 function deleteCompany(req, res, next) {
     const company = companies.find((c, i) => {
-        if (c.id === req.body.id) {
+        if (c.id === req.params.id) {
             companies.splice(i, 1);
             return true;
         }
@@ -58,7 +58,7 @@ function getCompany(req, res, next) {
 function patchCompany(req, res, next) {
     const company = companies.find((c, i) => {
         if (c.id === req.params.id) {
-            for (const key in c.body) {
+            for (const key in req.body) {
                 companies[i][key] = req.body[key];
             }
 
