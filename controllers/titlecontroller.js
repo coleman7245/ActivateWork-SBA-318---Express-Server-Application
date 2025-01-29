@@ -9,8 +9,10 @@ function deleteTitle(req, res, next) {
         }
     });
 
-    if (title)
-        res.json({title});
+    if (title) {
+        const data = [{title}];
+        res.render("titles/titles", {data});
+    }
     else
         next();
 }
@@ -31,8 +33,10 @@ function getTitle(req, res, next) {
     },
     ];
 
-    if (title) 
-        res.json({title, links});
+    if (title) {
+        const data = [{title, links}]; 
+        res.render("titles/titles", {data});
+    }
     else 
         next();
 }
@@ -40,7 +44,8 @@ function getTitle(req, res, next) {
 function getTitles(req, res) {
     if (req.query.limit) {
         const selected_titles = titles.slice(0, req.query.limit);
-        res.json({selected_titles});
+        const data = [{selected_titles}];
+        res.render("titles/titles", {data});
     }
     else {
         const links = [
@@ -51,7 +56,8 @@ function getTitles(req, res) {
             },
         ];
     
-        res.json({titles, links });
+        const data = [{titles, links}];
+        res.render("titles/titles", {data});
     }
 }
 
@@ -66,8 +72,10 @@ function patchTitle(req, res, next) {
         }
     });
 
-    if (title)
-        res.json({title});
+    if (title) {
+        const data = [{title}];
+        res.render("titles/titles", data);
+    }
     else
         next();
 }
@@ -83,7 +91,8 @@ function postTitle(req, res, next) {
         }
 
         titles.push(title);
-        res.json({titles});
+        const data = [{titles}];
+        res.render("titles/titles", {data});
     }
     else
         next(error(400, "Insufficient data"));

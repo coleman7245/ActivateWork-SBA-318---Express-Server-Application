@@ -9,8 +9,10 @@ function deleteCompany(req, res, next) {
         }
     });
 
-    if (company)
-        res.json({company});
+    if (company) {
+        const data = [{company}];
+        res.render("companies/companies", {data});
+    }
     else
         next();
 }
@@ -18,7 +20,8 @@ function deleteCompany(req, res, next) {
 function getCompanies(req, res) {
     if (req.query.limit) {
         const selected_companies = companies.slice(0, req.query.limit);
-        res.json({selected_companies});
+        const data = [{selected_companies}];
+        res.render("companies/companies", {data});
     }
     else {
         const links = [
@@ -28,8 +31,9 @@ function getCompanies(req, res) {
             type: "GET",
             },
         ];
-    
-        res.json({companies, links});
+        
+        const data = [{companies, links}];
+        res.render("companies/companies", {data});
     }
 }
 
@@ -49,8 +53,10 @@ function getCompany(req, res, next) {
     },
     ];
 
-    if (company) 
-        res.json({company, links});
+    if (company) {
+        const data = [{company, links}];
+        res.render("companies/companies", {data});
+    }
     else 
         next();
 }
@@ -66,8 +72,10 @@ function patchCompany(req, res, next) {
         }
     });
 
-    if (company)
-        res.json({company});
+    if (company) {
+        const data = [{company}];
+        res.render("companies/companies", {data});
+    }
     else
         next();
 }
@@ -82,7 +90,8 @@ function postCompany(req, res, next) {
         }
 
         companies.push(company);
-        res.json({company});
+        const data = [{company}];
+        res.render("companies/companies", {data});
     }
     else
         next(error(400, "Insufficient data"));

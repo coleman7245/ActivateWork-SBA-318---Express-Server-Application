@@ -9,8 +9,10 @@ function deleteGenre(req, res, next) {
         }
     });
 
-    if (genre)
-        res.json({genre});
+    if (genre) {
+        const data = [{genre}];
+        res.render("genres/genres", {data});
+    }
     else
         next();
 }
@@ -31,8 +33,10 @@ function getGenre(req, res, next) {
     },
     ];
 
-    if (genre) 
-        res.json({genre, links});
+    if (genre) {
+        const data = [{genre, links}]; 
+        res.render("genres/genres", {data});
+    }
     else 
         next();
 }
@@ -40,7 +44,8 @@ function getGenre(req, res, next) {
 function getGenres(req, res) {
     if (req.query.limit) {
         const selected_genres = genres.slice(0, req.query.limit);
-        res.json({selected_genres});
+        const data = [{selected_genres}];
+        res.render("genres/genres", {data});
     }
     else {
         const links = [
@@ -51,7 +56,8 @@ function getGenres(req, res) {
             },
         ];
     
-        res.json({genres, links});
+        const data = {genres, links};
+        res.render("genres/genres", {data});
     }
 }
 
@@ -66,8 +72,10 @@ function patchGenre(req, res, next) {
         }
     });
 
-    if (genre)
-        res.json({genre});
+    if (genre) {
+        const data = [{genre}];
+        res.render("genres/genres", {data});
+    }
     else
         next();
 }
@@ -80,7 +88,8 @@ function postGenre(req, res, next) {
         }
 
         genres.push(genre);
-        res.json({genre});
+        const data = [{genre}];
+        res.render("genres/genres", {data});
     }
     else
         next(error(400, "Insufficient data"));

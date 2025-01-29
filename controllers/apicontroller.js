@@ -7,8 +7,8 @@ function getAPIRequests(req, res) {
         }
     ];
 
-    res.render("index");
-    //res.json({links});
+    const data = [{links}];
+    res.render("index", {data});
 }
 
 function getDataRequests(req, res) {
@@ -45,7 +45,8 @@ function getDataRequests(req, res) {
         }
     ];
 
-    res.send(links);
+    const data = [{links}];
+    res.render("index", {data});
 }
 
 module.exports = {getAPIRequests, getDataRequests};

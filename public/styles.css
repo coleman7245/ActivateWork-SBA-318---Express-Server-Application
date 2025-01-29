@@ -3,7 +3,7 @@ body {
 }
 
 .frame {
-    display: flex;
+    display: inline;
     position: relative;
     flex-wrap: wrap;
     flex-direction: row;
@@ -41,9 +41,15 @@ body {
 
 a {
     background-color: yellow;
+    color : rgb(0, 0, 153);
 }
 
 a:hover {
     background-color : rgb(0, 0, 153);
+    color : yellow;
+}
+
+.nav-bar a:active {
+    background-color : rgb(0, 0, 255);
     color : yellow;
 }
